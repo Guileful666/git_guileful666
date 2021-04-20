@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 이 XML의 구조대로 구현될 클래스의 이름 => Impl클래스를 대체한다. -->
+<mapper namespace="StudentMapper">
+
+	<!-- Beans 클래스의 객체이름(id)과 클래스이름(type)을 명시한다. -->
+	<resultMap id="student" type="study.java.myschool.model.Student">
+		<!-- Beans의 멤버변수(property)이름과 
+			대상 테이블의 컬럼(column)을 연결한다. -->
+		<result property="studno" column="studno" />
+		<result property="name" column="name" />
+		<result property="userid" column="userid" />
+		<result property="grade" column="grade" />
+		<result property="idnum" column="idnum" />
+		<result property="birthdate" column="birthdate" />
+		<result property="tel" column="tel" />
+		<result property="height" column="height" />
+		<result property="weight" column="weight" />
+		<result property="deptno" column="deptno" />
+		<result property="profno" column="profno" />
+	</resultMap>
+	
+	<!-- 특정 학과에 소속된 모든 학생을 삭제한다. -->
+	<delete id="remove_student_by_deptno" 
+			parameterType="study.java.myschool.model.Student">
+		<!-- "#{변수명}" 으로 표시된 곳에 파라미터가 치환된다. -->
+		DELETE FROM student WHERE deptno=#{deptno};
+	</delete>
+
+</mapper>
